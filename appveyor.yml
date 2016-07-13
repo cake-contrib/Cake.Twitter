@@ -1,0 +1,55 @@
+#---------------------------------#
+#  Build Script                   #
+#---------------------------------#
+build_script:
+  - ps: .\build.ps1 -Target AppVeyor
+
+# Tests
+test: off
+
+#---------------------------------#
+#        Branches to build        #
+#---------------------------------#
+branches:
+  # Whitelist
+  only:
+    - develop
+    - master
+
+#---------------------------------#
+#  Environment Variables          #
+#---------------------------------#
+environment:
+  MYGET_MASTER_API_KEY:
+    secure: Vm2zOUJ40a4SeuXNlL6PhHoY2VjPF+Y4zlCPag7piqS72ipCLrB2OGY6wW7TXCRq
+  MYGET_DEVELOP_API_KEY:
+    secure: /wuNJoarlc1oSBHkhvTSSy1eJX/dvyY3GqjfwxC1lkHe/H+s+V1Vv0RW0JW/GtRh
+  MYGET_MASTER_SOURCE: https://www.myget.org/F/packages_master/
+  MYGET_DEVELOP_SOURCE: https://www.myget.org/F/packages_develop/
+  NUGET_API_KEY:
+    secure: a/xbTgIAc+QGdAwANmenmrUJFG5hqB+jMyqB6y80KZYXfRHOVEB+1dB4CEyDednf
+  NUGET_SOURCE: https://nuget.org/
+
+#---------------------------------#
+#  Notifications Configuration    #
+#---------------------------------#
+notifications:
+  - provider: Webhook
+    url:
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
+
+#---------------------------------#
+#  Build Cache                    #
+#---------------------------------#
+cache:
+- Source\packages -> Source\**\packages.config
+- Tools -> Tools\packages.config
+
+#---------------------------------#
+#  Skip builds for doc changes    #
+#---------------------------------#
+skip_commits:
+  # Regex for matching commit message
+  message: /(doc).*/
