@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #tool "nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2016.1.20160504.105828"
 #tool "nuget:?package=xunit.runner.console&version=2.1.0"
-#tool "nuget:?package=gitreleasemanager&version=0.4.0"
+#tool "nuget:?package=gitreleasemanager&version=0.5.0"
 #tool "nuget:?package=GitVersion.CommandLine&version=3.4.1"
 
 ///////////////////////////////////////////////////////////////////////////////

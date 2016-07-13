@@ -45,7 +45,7 @@ notifications:
 #---------------------------------#
 cache:
 - Source\packages -> Source\**\packages.config
-- Tools -> Tools\packages.config
+- Tools -> build.cake
 
 #---------------------------------#
 #  Skip builds for doc changes    #
