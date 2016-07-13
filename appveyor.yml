@@ -35,7 +35,7 @@ environment:
 #---------------------------------#
 notifications:
   - provider: Webhook
-    url:
+    url: https://webhooks.gitter.im/e/71cd391b0eff95c79f6c
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
