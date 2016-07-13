@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwitterAliases.cs" />
+    <Compile Include="TwitterProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cake.Twitter.ruleset" />
