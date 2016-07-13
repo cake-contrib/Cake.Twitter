@@ -13,7 +13,7 @@ This will instruct Cake to download the [Cake.Twitter](https://www.nuget.org/pac
 <div class="admonition note">
     <p class="first admonition-title">Note</p>
     <p class="last">
-        This Addin would not have been possible without the help of this [blog post](http://www.thatsoftwaredude.com/content/6289/how-to-post-a-tweet-using-c-for-single-user).  A big thank you to Alex who showed how to interact directly with the Twitter REST API.
+        This Addin would not have been possible without the help of this <a href="http://www.thatsoftwaredude.com/content/6289/how-to-post-a-tweet-using-c-for-single-user">blog post</a>.  A big thank you to Alex who showed how to interact directly with the Twitter REST API.
     </p>
 </div>
 
