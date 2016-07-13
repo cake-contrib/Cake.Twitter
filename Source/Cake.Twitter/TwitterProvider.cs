@@ -20,12 +20,16 @@ namespace Cake.Twitter
         private string _oAuthConsumerSecret = string.Empty;
         private string _accessToken = string.Empty;
         private string _accessTokenSecret = string.Empty;
-        string oAuthUrl = "https://api.twitter.com/1.1/statuses/update.json";
+        private string oAuthUrl = "https://api.twitter.com/1.1/statuses/update.json";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TwitterProvider"/> class.
         /// </summary>
-        /// <param name="context">The context.</param>
+        /// <param name="context">The Cake Context</param>
+        /// <param name="oAuthConsumerKey">The Twitter Consumer Key</param>
+        /// <param name="oAuthConsumerSecret">The Twitter Consumer Secret</param>
+        /// <param name="accessToken">The Twitter Application Access Token</param>
+        /// <param name="accessTokenSecret">The Twitter Application Token Secret</param>
         public TwitterProvider(ICakeContext context, string oAuthConsumerKey, string oAuthConsumerSecret, string accessToken, string accessTokenSecret)
         {
             _oAuthConsumerKey = oAuthConsumerKey;
@@ -34,6 +38,10 @@ namespace Cake.Twitter
             _accessTokenSecret = accessTokenSecret;
         }
 
+        /// <summary>
+        /// Send a tweet with the specified message.
+        /// </summary>
+        /// <param name="message">The message to tweet.</param>
         public void SendTweet(string message)
         {
             string authHeader = GenerateAuthorizationHeader(message);
@@ -56,6 +64,13 @@ namespace Cake.Twitter
 
             WebResponse authResponse = authRequest.GetResponse();
             authResponse.Close();
+        }
+
+        private static double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds);
         }
 
         private string GenerateAuthorizationHeader(string status)
@@ -123,13 +138,6 @@ namespace Cake.Twitter
             }
 
             return nonce;
-        }
-
-        public static double ConvertToUnixTimestamp(DateTime date)
-        {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            TimeSpan diff = date.ToUniversalTime() - origin;
-            return Math.Floor(diff.TotalSeconds);
         }
     }
 }
