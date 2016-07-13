@@ -250,3 +250,14 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Build related
+tools/Cake/
+tools/xunit.runners/
+tools/xunit.runner.console/
+tools/nuget.exe
+tools/gitreleasemanager/
+tools/GitVersion.CommandLine/
+tools/JetBrains.ReSharper.CommandLineTools/
+tools/Addins/
+BuildArtifacts/

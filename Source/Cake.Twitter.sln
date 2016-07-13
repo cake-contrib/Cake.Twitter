@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppVeyor", "AppVeyor", "{8E8CA9E7-C981-436B-B4B4-B020455E2A77}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScripts", "{B6E9A2D3-D9C0-4B71-8D1B-C703C9124649}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.cake = ..\build.cake
+		..\build.ps1 = ..\build.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{34F16AA4-3D10-467C-9CDD-C62982FEB0B8}"
+	ProjectSection(SolutionItems) = preProject
+		..\tools\packages.config = ..\tools\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Twitter", "Cake.Twitter\Cake.Twitter.csproj", "{5D941A40-AF0E-4D1C-8287-0B11F417417C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Twitter.Tests", "Cake.Twitter.Tests\Cake.Twitter.Tests.csproj", "{8139C5E3-9C90-4C46-B761-C837A09018EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D941A40-AF0E-4D1C-8287-0B11F417417C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D941A40-AF0E-4D1C-8287-0B11F417417C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D941A40-AF0E-4D1C-8287-0B11F417417C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D941A40-AF0E-4D1C-8287-0B11F417417C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8139C5E3-9C90-4C46-B761-C837A09018EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8139C5E3-9C90-4C46-B761-C837A09018EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8139C5E3-9C90-4C46-B761-C837A09018EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8139C5E3-9C90-4C46-B761-C837A09018EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

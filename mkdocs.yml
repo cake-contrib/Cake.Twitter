@@ -1,0 +1,7 @@
+site_name: Cake.Twitter
+theme: readthedocs
+repo_url: https://github.com/gep13/Cake.Twitter
+
+pages:
+- Home: index.md
+- Usage: usage.md
