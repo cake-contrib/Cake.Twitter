@@ -264,3 +264,4 @@ tools/Addins/
 tools/ReSharperReports/
 BuildArtifacts/
 .build
+packages.config.md5sum
