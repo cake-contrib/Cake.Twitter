@@ -15,6 +15,7 @@ private static string githubPasswordVariable = "CAKE_GITHUB_PASSWORD";
 ///////////////////////////////////////////////////////////////////////////////
 // PROJECT SPECIFIC VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
+
 var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
 var binDirectoryPath          = "./Source/Cake.Twitter/bin/" + configuration;
@@ -37,6 +38,7 @@ var nugetFiles                = new [] {
 var semVersion                = "0.1.0";
 
 #l .\Tools\gep13.DefaultBuild\Content\appveyor.cake
+#l .\Tools\gep13.DefaultBuild\Content\testing.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitreleasemanager.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitter.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitversion.cake

@@ -252,16 +252,19 @@ paket-files/
 *.sln.iml
 
 # Build related
+.build
+
+tools/Addins/
 tools/Cake/
-tools/xunit.runners/
-tools/xunit.runner.console/
-tools/nuget.exe
+tools/gep13.DefaultBuild/
 tools/gitreleasemanager/
 tools/GitVersion.CommandLine/
 tools/JetBrains.ReSharper.CommandLineTools/
-tools/gep13.DefaultBuild/
-tools/Addins/
+tools/OpenCover/
+tools/ReportGenerator/
+tools/ReportUnit/
 tools/ReSharperReports/
-BuildArtifacts/
-.build
+tools/xunit.runner.console/
+tools/nuget.exe
+
 packages.config.md5sum
