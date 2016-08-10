@@ -252,7 +252,7 @@ paket-files/
 *.sln.iml
 
 # Build related
-.build
+BuildArtifacts/
 
 tools/Addins/
 tools/Cake/

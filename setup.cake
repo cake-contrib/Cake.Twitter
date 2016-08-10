@@ -1,16 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////
-// ARGUMENTS
-///////////////////////////////////////////////////////////////////////////////
-
-var target          = Argument<string>("target", "Default");
-var configuration   = Argument<string>("configuration", "Release");
-
-///////////////////////////////////////////////////////////////////////////////
 // ENVIRONMENT VARIABLE NAMES
 ///////////////////////////////////////////////////////////////////////////////
 
-private static string githubUserNameVariable = "CAKE_GITHUB_USERNAME";
-private static string githubPasswordVariable = "CAKE_GITHUB_PASSWORD";
+private static string githubUserNameVariable = "CAKETWITTER_GITHUB_USERNAME";
+private static string githubPasswordVariable = "CAKETWITTER_GITHUB_PASSWORD";
+private static string myGetApiKeyVariable = "MYGET_API_KEY";
+private static string myGetSourceUrlVariable = "MYGET_SOURCE";
+private static string nuGetApiKeyVariable = "NUGET_API_KEY";
+private static string nuGetSourceUrlVariable = "NUGET_SOURCE";
+private static string chocolateyApiKeyVariable = "CHOCOLATEY_API_KEY";
+private static string chocolateySourceUrlVariable = "CHOCOLATEY_SOURCE";
+private static string gitterTokenVariable = "GITTER_TOKEN";
+private static string gitterRoomIdVariable = "GITTER_ROOM_ID";
+private static string slackTokenVariable = "SLACK_TOKEN";
+private static string slackChannelVariable = "SLACK_CHANNEL";
+private static string twitterConsumerKeyVariable = "TWITTER_CONSUMER_KEY";
+private static string twitterConsumerSecretVariable = "TWITTER_CONSUMER_SECRET";
+private static string twitterAccessTokenVariable = "TWITTER_ACCESS_TOKEN";
+private static string twitterAccessTokenSecretVariable = "TWITTER_ACCESS_TOKEN_SECRET";
 
 ///////////////////////////////////////////////////////////////////////////////
 // BUILD ACTIONS
@@ -26,9 +33,10 @@ var sendMessageToTwitter = true;
 
 var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
-var binDirectoryPath          = "./Source/Cake.Twitter/bin/" + configuration;
 var title                     = "Cake.Twitter";
 var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
+var repositoryOwner           = "gep13";
+var repositoryName            = "Cake.Twitter";
 
 ///////////////////////////////////////////////////////////////////////////////
 // CAKE FILES TO LOAD IN
@@ -36,6 +44,7 @@ var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
 
 #l .\Tools\gep13.DefaultBuild\Content\appveyor.cake
 #l .\Tools\gep13.DefaultBuild\Content\chocolatey.cake
+#l .\Tools\gep13.DefaultBuild\Content\credentials.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitreleasemanager.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitter.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitversion.cake
@@ -43,7 +52,6 @@ var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
 #l .\Tools\gep13.DefaultBuild\Content\packages.cake
 #l .\Tools\gep13.DefaultBuild\Content\parameters.cake
 #l .\Tools\gep13.DefaultBuild\Content\paths.cake
-#l .\Tools\gep13.DefaultBuild\Content\publish.cake
 #l .\Tools\gep13.DefaultBuild\Content\resharper.cake
 #l .\Tools\gep13.DefaultBuild\Content\slack.cake
 #l .\Tools\gep13.DefaultBuild\Content\testing.cake
