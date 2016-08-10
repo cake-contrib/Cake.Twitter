@@ -126,6 +126,7 @@ Task("Build")
     MSBuild(solution, settings =>
         settings.SetPlatformTarget(PlatformTarget.MSIL)
             .WithProperty("TreatWarningsAsErrors","true")
+            .WithProperty("OutDir", MakeAbsolute((FilePath)buildArtifacts).FullPath)
             .WithTarget("Build")
             .SetConfiguration(configuration));
 });

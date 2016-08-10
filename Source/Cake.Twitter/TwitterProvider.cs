@@ -47,7 +47,7 @@ namespace Cake.Twitter
             string authHeader = GenerateAuthorizationHeader(message);
             string postBody = "status=" + Uri.EscapeDataString(message);
 
-            HttpWebRequest authRequest = (HttpWebRequest)WebRequest.Create(oAuthUrl);
+            var authRequest = (HttpWebRequest)WebRequest.Create(oAuthUrl);
             authRequest.Headers.Add("Authorization", authHeader);
             authRequest.Method = "POST";
             authRequest.UserAgent = "OAuth gem v0.4.4";
@@ -56,20 +56,20 @@ namespace Cake.Twitter
             authRequest.ServicePoint.Expect100Continue = false;
             authRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-            using (Stream stream = authRequest.GetRequestStream())
+            using (var stream = authRequest.GetRequestStream())
             {
                 byte[] content = Encoding.UTF8.GetBytes(postBody);
                 stream.Write(content, 0, content.Length);
             }
 
-            WebResponse authResponse = authRequest.GetResponse();
+            var authResponse = authRequest.GetResponse();
             authResponse.Close();
         }
 
         private static double ConvertToUnixTimestamp(DateTime date)
         {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            TimeSpan diff = date.ToUniversalTime() - origin;
+            var origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var diff = date.ToUniversalTime() - origin;
             return Math.Floor(diff.TotalSeconds);
         }
 
@@ -116,7 +116,7 @@ namespace Cake.Twitter
             result += "&";
             result += Uri.EscapeDataString(dst);
 
-            HMACSHA1 hmac = new HMACSHA1();
+            var hmac = new HMACSHA1();
             hmac.Key = Encoding.UTF8.GetBytes(signingKey);
 
             byte[] databuff = System.Text.Encoding.UTF8.GetBytes(result);
