@@ -31,12 +31,16 @@ var sendMessageToTwitter = true;
 // PROJECT SPECIFIC VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
+var rootDirectoryPath         = MakeAbsolute(Context.Environment.WorkingDirectory);
 var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
 var title                     = "Cake.Twitter";
 var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
 var repositoryOwner           = "gep13";
 var repositoryName            = "Cake.Twitter";
+
+// NOTE: Only populate this, if required, but leave as is otherwise.
+string[] dupFinderExcludePattern = null;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CAKE FILES TO LOAD IN
