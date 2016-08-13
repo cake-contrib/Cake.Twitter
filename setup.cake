@@ -2,8 +2,8 @@
 // ENVIRONMENT VARIABLE NAMES
 ///////////////////////////////////////////////////////////////////////////////
 
-private static string githubUserNameVariable = "CAKETWITTER_GITHUB_USERNAME";
-private static string githubPasswordVariable = "CAKETWITTER_GITHUB_PASSWORD";
+private static string githubUserNameVariable = "GITHUB_USERNAME";
+private static string githubPasswordVariable = "GITHUB_PASSWORD";
 private static string myGetApiKeyVariable = "MYGET_API_KEY";
 private static string myGetSourceUrlVariable = "MYGET_SOURCE";
 private static string nuGetApiKeyVariable = "NUGET_API_KEY";
