@@ -36,7 +36,7 @@ var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
 var title                     = "Cake.Twitter";
 var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
-var repositoryOwner           = "gep13";
+var repositoryOwner           = "cake-build";
 var repositoryName            = "Cake.Twitter";
 
 // NOTE: Only populate this, if required, but leave as is otherwise.
