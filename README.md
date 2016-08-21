@@ -12,7 +12,7 @@ Cake Addin that exends Cake with ability to post messages to Twitter, using the 
 |:--:|:--:|:--:|
 |Docs|[![Documentation Status](https://readthedocs.org/projects/caketwitter/badge/?version=stable)](http://caketwitter.readthedocs.org/en/stable/)|[![Documentation Status](https://readthedocs.org/projects/caketwitter/badge/?version=develop)](http://caketwitter.readthedocs.org/en/develop/)|
 |GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Twitter.svg)](https://github.com/cake-contrib/Cake.Twitter/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Twitter.svg)](https://www.nuget.org/packages/Cake.Twotter)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Twitter.svg)](https://www.nuget.org/packages/Cake.Twitter)|
+|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Twitter.svg)](https://www.nuget.org/packages/Cake.Twitter)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Twitter.svg)](https://www.nuget.org/packages/Cake.Twitter)|
 
 ## Build Status
 
