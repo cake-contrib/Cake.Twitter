@@ -28,4 +28,4 @@ Cake Addin that exends Cake with ability to post messages to Twitter, using the 
 ## Chat Room
 Come join in the conversation about Cake.Twitter in our Gitter Chat Room
 
-[![Join the chat at https://gitter.im/gep13/Cake.Twitter](https://badges.gitter.im/gep13/Cake.Twitter.svg)](https://gitter.im/gep13/Cake.Twitter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/cake-contrib/Lobby](https://badges.gitter.im/cake-contrib/Lobby.svg)](https://gitter.im/cake-contrib/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
