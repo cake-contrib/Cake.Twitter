@@ -37,7 +37,7 @@ namespace Cake.Twitter
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        [CakeNamespaceImportAttribute("Cake.Twitter")]
+        [CakeNamespaceImport("Cake.Twitter")]
         public static void TwitterSendTweet(this ICakeContext context, string oAuthConsumerKey, string oAuthConsumerSecret, string accessToken, string accessTokenSecret, string message)
         {
             if (context == null)
