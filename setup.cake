@@ -2,8 +2,8 @@
 // ENVIRONMENT VARIABLE NAMES
 ///////////////////////////////////////////////////////////////////////////////
 
-private static string githubUserNameVariable = "CAKETWITTER_GITHUB_USERNAME";
-private static string githubPasswordVariable = "CAKETWITTER_GITHUB_PASSWORD";
+private static string githubUserNameVariable = "GITHUB_USERNAME";
+private static string githubPasswordVariable = "GITHUB_PASSWORD";
 private static string myGetApiKeyVariable = "MYGET_API_KEY";
 private static string myGetSourceUrlVariable = "MYGET_SOURCE";
 private static string nuGetApiKeyVariable = "NUGET_API_KEY";
@@ -31,12 +31,16 @@ var sendMessageToTwitter = true;
 // PROJECT SPECIFIC VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
+var rootDirectoryPath         = MakeAbsolute(Context.Environment.WorkingDirectory);
 var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
 var title                     = "Cake.Twitter";
 var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
-var repositoryOwner           = "gep13";
+var repositoryOwner           = "cake-contrib";
 var repositoryName            = "Cake.Twitter";
+
+// NOTE: Only populate this, if required, but leave as is otherwise.
+string[] dupFinderExcludePattern = null;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CAKE FILES TO LOAD IN
