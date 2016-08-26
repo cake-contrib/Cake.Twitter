@@ -20,6 +20,10 @@ Cake Addin that exends Cake with ability to post messages to Twitter, using the 
 |:--:|:--:|
 |[![Build status](https://ci.appveyor.com/api/projects/status/179uye6rasp43xnf/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-twitter/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/179uye6rasp43xnf/branch/master?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-twitter/branch/master)|
 
+## Code Coverage
+
+[![Coverage Status](https://coveralls.io/repos/github/cake-contrib/Cake.Twitter/badge.svg)](https://coveralls.io/github/cake-contrib/Cake.Twitter)
+
 ## Quick Links
 
 - [Documentation](http://caketwitter.readthedocs.org/en/develop/)
