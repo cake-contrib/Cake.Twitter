@@ -1,6 +1,6 @@
 site_name: Cake.Twitter
 theme: readthedocs
-repo_url: https://github.com/gep13/Cake.Twitter
+repo_url: https://github.com/cake-contrib/Cake.Twitter
 
 pages:
 - Home: index.md
