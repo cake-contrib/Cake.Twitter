@@ -4,18 +4,18 @@
     <id>Cake.Twitter</id>
     <version>0.0.0</version>
     <authors>gep13</authors>
-    <owners>gep13</owners>
+    <owners>gep13, cake-contrib</owners>
     <description>Cake Twitter AddIn.</description>
     <summary>Cake AddIn that extends Cake with ability to send messages to Twitter.</summary>
-    <licenseUrl>https://github.com/gep13/Cake.Twitter/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/gep13/Cake.Twitter/</projectUrl>
+    <licenseUrl>https://github.com/cake-contrib/Cake.Twitter/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/cake-contrib/Cake.Twitter/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <copyright>Copyright (c) gep13</copyright>
+    <copyright>Copyright (c) Cake Contributions 2016 - Present</copyright>
     <tags>Cake, Script, Build, Twitter</tags>
   </metadata>
   <files>
-    <file src="Cake.Twitter.dll" />
-    <file src="Cake.Twitter.pdb" />
-    <file src="Cake.Twitter.xml" />
+    <file src="Cake.Twitter.dll" target="lib\net45" />
+    <file src="Cake.Twitter.pdb" target="lib\net45" />
+    <file src="Cake.Twitter.xml" target="lib\net45" />
   </files>
 </package>
