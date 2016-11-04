@@ -18,6 +18,8 @@ private static string twitterConsumerKeyVariable = "TWITTER_CONSUMER_KEY";
 private static string twitterConsumerSecretVariable = "TWITTER_CONSUMER_SECRET";
 private static string twitterAccessTokenVariable = "TWITTER_ACCESS_TOKEN";
 private static string twitterAccessTokenSecretVariable = "TWITTER_ACCESS_TOKEN_SECRET";
+private static string appVeyorApiTokenVariable = "APPVEYOR_API_TOKEN";
+private static string coverallsRepoTokenVariable = "COVERALLS_REPO_TOKEN";
 
 ///////////////////////////////////////////////////////////////////////////////
 // BUILD ACTIONS
@@ -32,15 +34,21 @@ var sendMessageToTwitter = true;
 ///////////////////////////////////////////////////////////////////////////////
 
 var rootDirectoryPath         = MakeAbsolute(Context.Environment.WorkingDirectory);
+var sourceDirectoryPath       = "./Source";
 var solutionFilePath          = "./Source/Cake.Twitter.sln";
 var solutionDirectoryPath     = "./Source/Cake.Twitter";
 var title                     = "Cake.Twitter";
 var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
 var repositoryOwner           = "cake-contrib";
 var repositoryName            = "Cake.Twitter";
+var appVeyorAccountName       = "cakecontrib";
+var appVeyorProjectSlug       = "cake-cakemail";
 
 // NOTE: Only populate this, if required, but leave as is otherwise.
-string[] dupFinderExcludePattern = null;
+var dupFinderExcludePattern   = new string[] { rootDirectoryPath + "/Source/Cake.Twitter.Tests/*.cs" };
+var testCoverageFilter = "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]* ";
+var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
+var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
 
 ///////////////////////////////////////////////////////////////////////////////
 // CAKE FILES TO LOAD IN
@@ -48,6 +56,7 @@ string[] dupFinderExcludePattern = null;
 
 #l .\Tools\gep13.DefaultBuild\Content\appveyor.cake
 #l .\Tools\gep13.DefaultBuild\Content\chocolatey.cake
+#l .\Tools\gep13.DefaultBuild\Content\coveralls.cake
 #l .\Tools\gep13.DefaultBuild\Content\credentials.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitreleasemanager.cake
 #l .\Tools\gep13.DefaultBuild\Content\gitter.cake
