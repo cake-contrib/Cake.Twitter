@@ -42,7 +42,7 @@ var resharperSettingsFileName = "Cake.Twitter.sln.DotSettings";
 var repositoryOwner           = "cake-contrib";
 var repositoryName            = "Cake.Twitter";
 var appVeyorAccountName       = "cakecontrib";
-var appVeyorProjectSlug       = "cake-cakemail";
+var appVeyorProjectSlug       = "cake-twitter";
 
 // NOTE: Only populate this, if required, but leave as is otherwise.
 var dupFinderExcludePattern   = new string[] { rootDirectoryPath + "/Source/Cake.Twitter.Tests/*.cs" };
