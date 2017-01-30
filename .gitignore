@@ -254,17 +254,5 @@ paket-files/
 # Build related
 BuildArtifacts/
 
-tools/Addins/
-tools/Cake/
-tools/gep13.DefaultBuild/
-tools/gitreleasemanager/
-tools/GitVersion.CommandLine/
-tools/JetBrains.ReSharper.CommandLineTools/
-tools/OpenCover/
-tools/ReportGenerator/
-tools/ReportUnit/
-tools/ReSharperReports/
-tools/xunit.runner.console/
-tools/nuget.exe
-
-packages.config.md5sum
+tools/**
+!tools/packages.config
