@@ -1,6 +1,6 @@
 ---
 Title: New Release - 0.4.0
-Published: 30/1/2017
+Published: 30/01/2017
 Category: Release
 Author: gep13
 ---
