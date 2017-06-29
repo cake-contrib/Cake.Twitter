@@ -34,29 +34,29 @@ var searchModule = function() {
 
     a({
         id:0,
-        title:"TwitterAliases",
-        content:"TwitterAliases",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:1,
         title:"TwitterProvider",
         content:"TwitterProvider",
         description:'',
         tags:''
     });
 
-    y({
-        url:'/Cake.Twitter/Cake.Twitter/api/Cake.Twitter/TwitterAliases',
+    a({
+        id:1,
         title:"TwitterAliases",
-        description:""
+        content:"TwitterAliases",
+        description:'',
+        tags:''
     });
 
     y({
         url:'/Cake.Twitter/Cake.Twitter/api/Cake.Twitter/TwitterProvider',
         title:"TwitterProvider",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Twitter/Cake.Twitter/api/Cake.Twitter/TwitterAliases',
+        title:"TwitterAliases",
         description:""
     });
 
