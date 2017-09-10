@@ -18,5 +18,7 @@
     <file src="Cake.Twitter.dll" target="lib\net46" />
     <file src="Cake.Twitter.pdb" target="lib\net46" />
     <file src="Cake.Twitter.xml" target="lib\net46" />
+    <file src="netstandard1.6\Cake.Twitter.dll" target="lib/netstandard1.6" /> 
+    <file src="netstandard1.6\Cake.Twitter.pdb" target="lib/netstandard1.6" />
   </files>
 </package>
