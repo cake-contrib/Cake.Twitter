@@ -8,7 +8,8 @@ BuildParameters.SetParameters(context: Context,
                             title: "Cake.Twitter",
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Twitter",
-                            appVeyorAccountName: "cakecontrib");
+                            appVeyorAccountName: "cakecontrib",
+                            shouldRunCodecov:false);
 
 BuildParameters.PrintParameters(Context);
 
