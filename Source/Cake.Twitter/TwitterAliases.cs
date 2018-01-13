@@ -42,7 +42,7 @@ namespace Cake.Twitter
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var twitterProvider = new TwitterProvider(context, oAuthConsumerKey, oAuthConsumerSecret, accessToken, accessTokenSecret);

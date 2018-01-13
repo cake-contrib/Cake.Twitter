@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using Cake.Core;
@@ -45,24 +49,25 @@ namespace Cake.Twitter
         {
             string authHeader = GenerateAuthorizationHeader(message);
             string postBody = "status=" + Uri.EscapeDataString(message);
+            byte[] content = Encoding.UTF8.GetBytes(postBody);
 
-            var authRequest = (HttpWebRequest)WebRequest.Create(oAuthUrl);
-            authRequest.Headers.Add("Authorization", authHeader);
-            authRequest.Method = "POST";
-            authRequest.UserAgent = "OAuth gem v0.4.4";
-            authRequest.Host = "api.twitter.com";
-            authRequest.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
-            authRequest.ServicePoint.Expect100Continue = false;
-            authRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            var request = new ByteArrayContent(content);
 
-            using (var stream = authRequest.GetRequestStream())
+            request.Headers.Add("Authorization", authHeader);
+            request.Headers.Add("UserAgent", "OAuth gem v0.4.4");
+            request.Headers.Add("Host", "api.twitter.com");
+            request.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded;charset=UTF-8");
+            request.Headers.ContentLength = content.Length;
+
+            var messageHandler = new HttpClientHandler
             {
-                byte[] content = Encoding.UTF8.GetBytes(postBody);
-                stream.Write(content, 0, content.Length);
-            }
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
 
-            var authResponse = authRequest.GetResponse();
-            authResponse.Close();
+            using (var client = new HttpClient(messageHandler))
+            {
+                client.PostAsync(oAuthUrl, request);
+            }
         }
 
         private static double ConvertToUnixTimestamp(DateTime date)
