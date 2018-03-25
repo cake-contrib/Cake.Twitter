@@ -2,21 +2,22 @@
 
 Environment.SetVariableNames();
 
-BuildParameters.SetParameters(context: Context, 
+BuildParameters.SetParameters(context: Context,
                             buildSystem: BuildSystem,
                             sourceDirectoryPath: "./Source",
                             title: "Cake.Twitter",
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Twitter",
-                            appVeyorAccountName: "cakecontrib");
+                            appVeyorAccountName: "cakecontrib",
+                            shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
 
 ToolSettings.SetToolSettings(context: Context,
-                            dupFinderExcludePattern: new string[] { 
-                                BuildParameters.RootDirectoryPath + "/Source/Cake.Twitter.Tests/*.cs" },
+                            dupFinderExcludePattern: new string[] {
+                                BuildParameters.RootDirectoryPath + "/Source/Cake.Twitter.Tests/*.cs", BuildParameters.RootDirectoryPath + "/Source/Cake.Twitter/**/*.AssemblyInfo.cs" },
                             testCoverageFilter: "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]* ",
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
-Build.Run();
+Build.RunDotNetCore();
