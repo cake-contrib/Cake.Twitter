@@ -15,10 +15,8 @@
     <tags>Cake, Script, Build, Twitter</tags>
   </metadata>
   <files>
-    <file src="net46\Cake.Twitter.dll" target="lib\net46" />
-    <file src="net46\Cake.Twitter.pdb" target="lib\net46" />
-    <file src="net46\Cake.Twitter.xml" target="lib\net46" />
-    <file src="netstandard2.0\Cake.Twitter.dll" target="lib/netstandard2.0" /> 
+    <file src="netstandard2.0\Cake.Twitter.dll" target="lib/netstandard2.0" />
     <file src="netstandard2.0\Cake.Twitter.pdb" target="lib/netstandard2.0" />
+    <file src="netstandard2.0\Cake.Twitter.xml" target="lib/netstandard2.0" />
   </files>
 </package>
