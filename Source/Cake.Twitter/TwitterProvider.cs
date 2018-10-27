@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -6,142 +7,132 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Cake.Core;
 
 namespace Cake.Twitter
 {
-    // The code within this TwitterProvider has been based almost exclusively on the work that was done by Alex (That Software Dude)
-    // based on this blog post:
-    // http://www.thatsoftwaredude.com/content/6289/how-to-post-a-tweet-using-c-for-single-user
+  // The code within this TwitterProvider has been based almost exclusively on the work that was done by Danny Tuppeny
+  // based on this blog post:
+  // https://blog.dantup.com/2016/07/simplest-csharp-code-to-post-a-tweet-using-oauth/
+  /// <summary>
+  /// Contains functionality related to Twitter API
+  /// </summary>
+  public sealed class TwitterProvider
+  {
+    const string TwitterApiBaseUrl = "https://api.twitter.com/1.1/";
+    readonly string consumerKey, consumerKeySecret, accessToken, accessTokenSecret;
+    readonly HMACSHA1 sigHasher;
+    readonly DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
     /// <summary>
-    /// Contains functionality related to Twitter API
+    /// Creates an object for sending tweets to Twitter using Single-user OAuth.
+    ///
+    /// Get your access keys by creating an app at apps.twitter.com then visiting the
+    /// "Keys and Access Tokens" section for your app. They can be found under the
+    /// "Your Access Token" heading.
     /// </summary>
-    public sealed class TwitterProvider
+    public TwitterProvider(string consumerKey, string consumerKeySecret, string accessToken, string accessTokenSecret)
     {
-        private string _oAuthConsumerKey = string.Empty;
-        private string _oAuthConsumerSecret = string.Empty;
-        private string _accessToken = string.Empty;
-        private string _accessTokenSecret = string.Empty;
-        private string oAuthUrl = "https://api.twitter.com/1.1/statuses/update.json";
+      this.consumerKey = consumerKey;
+      this.consumerKeySecret = consumerKeySecret;
+      this.accessToken = accessToken;
+      this.accessTokenSecret = accessTokenSecret;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TwitterProvider"/> class.
-        /// </summary>
-        /// <param name="context">The Cake Context</param>
-        /// <param name="oAuthConsumerKey">The Twitter Consumer Key</param>
-        /// <param name="oAuthConsumerSecret">The Twitter Consumer Secret</param>
-        /// <param name="accessToken">The Twitter Application Access Token</param>
-        /// <param name="accessTokenSecret">The Twitter Application Token Secret</param>
-        public TwitterProvider(ICakeContext context, string oAuthConsumerKey, string oAuthConsumerSecret, string accessToken, string accessTokenSecret)
-        {
-            _oAuthConsumerKey = oAuthConsumerKey;
-            _oAuthConsumerSecret = oAuthConsumerSecret;
-            _accessToken = accessToken;
-            _accessTokenSecret = accessTokenSecret;
-        }
-
-        /// <summary>
-        /// Send a tweet with the specified message.
-        /// </summary>
-        /// <param name="message">The message to tweet.</param>
-        public void SendTweet(string message)
-        {
-            string authHeader = GenerateAuthorizationHeader(message);
-            string postBody = "status=" + Uri.EscapeDataString(message);
-            byte[] content = Encoding.UTF8.GetBytes(postBody);
-
-            var request = new ByteArrayContent(content);
-
-            request.Headers.Add("Authorization", authHeader);
-            request.Headers.Add("UserAgent", "OAuth gem v0.4.4");
-            request.Headers.Add("Host", "api.twitter.com");
-            request.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded;charset=UTF-8");
-            request.Headers.ContentLength = content.Length;
-
-            var messageHandler = new HttpClientHandler
-            {
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            };
-
-            using (var client = new HttpClient(messageHandler))
-            {
-                client.PostAsync(oAuthUrl, request);
-            }
-        }
-
-        private static double ConvertToUnixTimestamp(DateTime date)
-        {
-            var origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            var diff = date.ToUniversalTime() - origin;
-            return Math.Floor(diff.TotalSeconds);
-        }
-
-        private string GenerateAuthorizationHeader(string status)
-        {
-            string signatureMethod = "HMAC-SHA1";
-            string version = "1.0";
-            string nonce = GenerateNonce();
-            double timestamp = ConvertToUnixTimestamp(DateTime.Now);
-            string dst = string.Empty;
-
-            dst = string.Empty;
-            dst += "OAuth ";
-            dst += string.Format("oauth_consumer_key=\"{0}\", ", Uri.EscapeDataString(_oAuthConsumerKey));
-            dst += string.Format("oauth_nonce=\"{0}\", ", Uri.EscapeDataString(nonce));
-            dst += string.Format("oauth_signature=\"{0}\", ", Uri.EscapeDataString(GenerateOauthSignature(status, nonce, timestamp.ToString())));
-            dst += string.Format("oauth_signature_method=\"{0}\", ", Uri.EscapeDataString(signatureMethod));
-            dst += string.Format("oauth_timestamp=\"{0}\", ", timestamp);
-            dst += string.Format("oauth_token=\"{0}\", ", Uri.EscapeDataString(_accessToken));
-            dst += string.Format("oauth_version=\"{0}\"", Uri.EscapeDataString(version));
-            return dst;
-        }
-
-        private string GenerateOauthSignature(string status, string nonce, string timestamp)
-        {
-            string signatureMethod = "HMAC-SHA1";
-            string version = "1.0";
-            string result = string.Empty;
-            string dst = string.Empty;
-
-            dst += string.Format("oauth_consumer_key={0}&", Uri.EscapeDataString(_oAuthConsumerKey));
-            dst += string.Format("oauth_nonce={0}&", Uri.EscapeDataString(nonce));
-            dst += string.Format("oauth_signature_method={0}&", Uri.EscapeDataString(signatureMethod));
-            dst += string.Format("oauth_timestamp={0}&", timestamp);
-            dst += string.Format("oauth_token={0}&", Uri.EscapeDataString(_accessToken));
-            dst += string.Format("oauth_version={0}&", Uri.EscapeDataString(version));
-            dst += string.Format("status={0}", Uri.EscapeDataString(status));
-
-            string signingKey = string.Empty;
-            signingKey = string.Format("{0}&{1}", Uri.EscapeDataString(_oAuthConsumerSecret), Uri.EscapeDataString(_accessTokenSecret));
-
-            result += "POST&";
-            result += Uri.EscapeDataString(oAuthUrl);
-            result += "&";
-            result += Uri.EscapeDataString(dst);
-
-            var hmac = new HMACSHA1();
-            hmac.Key = Encoding.UTF8.GetBytes(signingKey);
-
-            byte[] databuff = System.Text.Encoding.UTF8.GetBytes(result);
-            byte[] hashbytes = hmac.ComputeHash(databuff);
-
-            return Convert.ToBase64String(hashbytes);
-        }
-
-        private string GenerateNonce()
-        {
-            string nonce = string.Empty;
-            var rand = new Random();
-            int next = 0;
-            for (var i = 0; i < 32; i++)
-            {
-                next = rand.Next(65, 90);
-                char c = Convert.ToChar(next);
-                nonce += c;
-            }
-
-            return nonce;
-        }
+      sigHasher = new HMACSHA1(new ASCIIEncoding().GetBytes(string.Format("{0}&{1}", consumerKeySecret, accessTokenSecret)));
     }
+
+    /// <summary>
+    /// Sends a tweet with the supplied text and returns the response from the Twitter API.
+    /// </summary>
+    public Task<string> Tweet(string text)
+    {
+      var data = new Dictionary<string, string> {
+      { "status", text },
+      { "trim_user", "1" }
+    };
+
+      return SendRequest("statuses/update.json", data);
+    }
+
+    Task<string> SendRequest(string url, Dictionary<string, string> data)
+    {
+      var fullUrl = TwitterApiBaseUrl + url;
+
+      // Timestamps are in seconds since 1/1/1970.
+      var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
+
+      // Add all the OAuth headers we'll need to use when constructing the hash.
+      data.Add("oauth_consumer_key", consumerKey);
+      data.Add("oauth_signature_method", "HMAC-SHA1");
+      data.Add("oauth_timestamp", timestamp.ToString());
+      data.Add("oauth_nonce", "a"); // Required, but Twitter doesn't appear to use it, so "a" will do.
+      data.Add("oauth_token", accessToken);
+      data.Add("oauth_version", "1.0");
+
+      // Generate the OAuth signature and add it to our payload.
+      data.Add("oauth_signature", GenerateSignature(fullUrl, data));
+
+      // Build the OAuth HTTP Header from the data.
+      string oAuthHeader = GenerateOAuthHeader(data);
+
+      // Build the form data (exclude OAuth stuff that's already in the header).
+      var formData = new FormUrlEncodedContent(data.Where(kvp => !kvp.Key.StartsWith("oauth_")));
+
+      return SendRequest(fullUrl, oAuthHeader, formData);
+    }
+
+    /// <summary>
+    /// Generate an OAuth signature from OAuth header values.
+    /// </summary>
+    string GenerateSignature(string url, Dictionary<string, string> data)
+    {
+      var sigString = string.Join(
+        "&",
+        data
+          .Union(data)
+          .Select(kvp => string.Format("{0}={1}", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
+          .OrderBy(s => s)
+      );
+
+      var fullSigData = string.Format(
+        "{0}&{1}&{2}",
+        "POST",
+        Uri.EscapeDataString(url),
+        Uri.EscapeDataString(sigString.ToString())
+      );
+
+      return Convert.ToBase64String(sigHasher.ComputeHash(new ASCIIEncoding().GetBytes(fullSigData.ToString())));
+    }
+
+    /// <summary>
+    /// Generate the raw OAuth HTML header from the values (including signature).
+    /// </summary>
+    string GenerateOAuthHeader(Dictionary<string, string> data)
+    {
+      return "OAuth " + string.Join(
+        ", ",
+        data
+          .Where(kvp => kvp.Key.StartsWith("oauth_"))
+          .Select(kvp => string.Format("{0}=\"{1}\"", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
+          .OrderBy(s => s)
+      );
+    }
+
+    /// <summary>
+    /// Send HTTP Request and return the response.
+    /// </summary>
+    async Task<string> SendRequest(string fullUrl, string oAuthHeader, FormUrlEncodedContent formData)
+    {
+      using (var http = new HttpClient())
+      {
+        http.DefaultRequestHeaders.Add("Authorization", oAuthHeader);
+
+        var httpResp = await http.PostAsync(fullUrl, formData);
+        var respBody = await httpResp.Content.ReadAsStringAsync();
+
+        return respBody;
+      }
+    }
+  }
 }
