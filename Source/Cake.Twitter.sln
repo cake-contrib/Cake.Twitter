@@ -11,7 +11,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScripts", "{B6E9A2D3-D9C0-4B71-8D1B-C703C9124649}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.ps1 = ..\build.ps1
-		..\setup.cake = ..\setup.cake
+		..\recipe.cake = ..\recipe.cake
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{34F16AA4-3D10-467C-9CDD-C62982FEB0B8}"
