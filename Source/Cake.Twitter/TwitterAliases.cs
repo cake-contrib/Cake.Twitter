@@ -45,8 +45,8 @@ namespace Cake.Twitter
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var twitterProvider = new TwitterProvider(context, oAuthConsumerKey, oAuthConsumerSecret, accessToken, accessTokenSecret);
-            twitterProvider.SendTweet(message);
+            var twitterProvider = new TwitterProvider(oAuthConsumerKey, oAuthConsumerSecret, accessToken, accessTokenSecret);
+            twitterProvider.Tweet(message).Wait();
         }
     }
 }
