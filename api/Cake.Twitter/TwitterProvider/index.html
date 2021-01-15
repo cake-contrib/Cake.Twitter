@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="description">
@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Twitter/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Twitter/assets/img/favicon.ico" type="image/x-icon">
-        <title>Docs - API - TwitterProvider Class</title>
-        <link href="/Cake.Twitter/assets/css/mermaid.css" rel="stylesheet">
+        <title>Cake.Twitter - API - TwitterProvider Class</title>
         <link href="/Cake.Twitter/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Twitter/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/Cake.Twitter/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -22,6 +21,7 @@
         <script src="/Cake.Twitter/assets/js/jquery.slimscroll.min.js"></script>
         <script src="/Cake.Twitter/assets/js/jquery.sticky-kit.min.js"></script>
         <script src="/Cake.Twitter/assets/js/mermaid.min.js"></script>
+        <script src="/Cake.Twitter/assets/js/svg-pan-zoom.min.js"></script>
         <!--[if lt IE 9]>
         <script src="/Cake.Twitter/assets/js/html5shiv.min.js"></script>
         <script src="/Cake.Twitter/assets/js/respond.min.js"></script>
@@ -36,7 +36,7 @@
             <header class="main-header">   
                      
                 <a href="/Cake.Twitter/" class="logo">
-                            <span>Docs</span>
+                            <span>Cake.Twitter</span>
                 </a>   
                          
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -57,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/Cake.Twitter/docs">Documentation</a></li>
-        <li><a href="/Cake.Twitter/blog">Blog</a></li>
+        <li><a href="/Cake.Twitter/tasks">Tasks</a></li>
         <li class="active"><a href="/Cake.Twitter/api">API</a></li>
  
                         </ul>       
@@ -80,10 +80,11 @@
 </div>
 
                 </section>
-                <section class="sidebar">                    
+                <section class="sidebar">    
+                                     
                     	
-	    <script src="/assets/js/lunr.min.js"></script>
-    <script src="/assets/js/searchIndex.js"></script>
+	    <script src="/Cake.Twitter/assets/js/lunr.min.js"></script>
+    <script src="/Cake.Twitter/assets/js/searchIndex.js"></script>
     <div class="sidebar-form">
         <div class="input-group">
             <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
@@ -108,7 +109,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -120,6 +121,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -135,6 +143,7 @@
 
 
                     </ul>
+                            
                 </section>                
             </aside>
             
@@ -177,8 +186,8 @@
 					</div>		
 					<div class="col-md-6">
 						<div class="mermaid">
-							graph TD
-	Base0["object"]--&gt;Type
+							graph BT
+	Type--&gt;Base0["object"]
 	Type["TwitterProvider"]
 class Type type-node
 
@@ -196,6 +205,7 @@ class Type type-node
 
 
 
+
 			<h1 id="Constructors">Constructors</h1>
 			<div class="box">
 				<div class="box-body no-padding table-responsive">
@@ -207,10 +217,14 @@ class Type type-node
 							</tr>
 						</thead>
 							<tbody><tr>
-								<td><a href="/Cake.Twitter/api/Cake.Twitter/TwitterProvider/5B805F1D">TwitterProvider<wbr>(ICakeContext, <wbr>string, <wbr>string, <wbr>string, <wbr>string)<wbr></a></td>
+								<td><a href="/Cake.Twitter/api/Cake.Twitter/TwitterProvider/C054E9C3">TwitterProvider<wbr>(string, <wbr>string, <wbr>string, <wbr>string)<wbr></a></td>
 									<td>
-    Initializes a new instance of the <code class="cs"><a href="/Cake.Twitter/api/Cake.Twitter/TwitterProvider">TwitterProvider</a></code> class.
-    </td>
+     Creates an object for sending tweets to Twitter using Single-user OAuth.
+    
+     Get your access keys by creating an app at apps.twitter.com then visiting the
+     "Keys and Access Tokens" section for your app. They can be found under the
+     "Your Access Token" heading.
+     </td>
 							</tr>
 					</tbody></table>
 				</div>
@@ -232,11 +246,11 @@ class Type type-node
 							</tr>
 						</thead>
 							<tbody><tr>
-								<td><a href="/Cake.Twitter/api/Cake.Twitter/TwitterProvider/DF609D2F">SendTweet<wbr>(string)<wbr></a></td>
-								<td>void</td>
+								<td><a href="/Cake.Twitter/api/Cake.Twitter/TwitterProvider/E99B69AE">Tweet<wbr>(string)<wbr></a></td>
+								<td>Task<wbr>&lt;string&gt;<wbr></td>
 								<td>
 									<div>
-    Send a tweet with the specified message.
+    Sends a tweet with the supplied text and returns the response from the Twitter API.
     </div>
 								</td>
 							</tr>
@@ -244,6 +258,7 @@ class Type type-node
 				</div>
 			</div>
 		
+
 
 
 	
@@ -269,22 +284,53 @@ class Type type-node
                 $(document.body).removeClass('sidebar-open');
             });
             
-            $(document).load(function() {
+            $(document).ready(function() {
                 mermaid.initialize(
                 {
                     flowchart:
                     {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
                 
                 $('pre code').each(function(i, block) {
                     hljs.highlightBlock(block);
                 });  
             });
+
             hljs.initHighlightingOnLoad();
 
             // Back to top
