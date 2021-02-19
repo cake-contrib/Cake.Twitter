@@ -2,6 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <PropertyGroup>
     <CodeAnalysisRuleSet>Cake.Twitter.ruleset</CodeAnalysisRuleSet>
@@ -10,12 +12,33 @@
     <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup>
+      <StartYear>2016</StartYear>
+      <EndYear>$([System.DateTime]::Today.Year)</EndYear>
+      <FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
+      <FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
+
+      <!-- Properties related to packaging -->
+      <Authors>Gary Ewan Park</Authors>
+      <Copyright>Copyright © $(FullYear) — Cake Contributions</Copyright>
+      <Description>Cake AddIn that extends Cake with ability to send messages to Twitter.</Description>
+      <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageProjectUrl>https://github.com/cake-contrib/Cake.Twitter/</PackageProjectUrl>
+      <PackageTags>Cake;Script;Build;Twitter</PackageTags>
+      <RepositoryUrl>https://github.com/cake-contrib/Cake.Twitter.git</RepositoryUrl>
+      <PackageReleaseNotes>https://github.com/cake-contrib/Cake.Twitter/releases/tag/$(Version)</PackageReleaseNotes>
+  </PropertyGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
