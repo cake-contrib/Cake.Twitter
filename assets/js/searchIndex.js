@@ -39,20 +39,6 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"TwitterProvider",
-            content:"TwitterProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Twitter/api/Cake.Twitter/TwitterProvider',
-            title:"TwitterProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
             title:"TwitterAliases",
             content:"TwitterAliases",
             description:'',
@@ -61,6 +47,20 @@ var searchModule = function() {
         {
             url:'/Cake.Twitter/api/Cake.Twitter/TwitterAliases',
             title:"TwitterAliases",
+            description:""
+        }
+    );
+    a(
+        {
+            id:1,
+            title:"TwitterProvider",
+            content:"TwitterProvider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Twitter/api/Cake.Twitter/TwitterProvider',
+            title:"TwitterProvider",
             description:""
         }
     );
