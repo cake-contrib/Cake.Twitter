@@ -255,7 +255,6 @@ paket-files/
 BuildArtifacts/
 
 tools/**
-!tools/packages.config
 
 # Mac
 .DS_Store
