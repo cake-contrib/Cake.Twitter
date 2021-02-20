@@ -14,11 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScript
 		..\recipe.cake = ..\recipe.cake
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{34F16AA4-3D10-467C-9CDD-C62982FEB0B8}"
-	ProjectSection(SolutionItems) = preProject
-		..\tools\packages.config = ..\tools\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Twitter", "Cake.Twitter\Cake.Twitter.csproj", "{5D941A40-AF0E-4D1C-8287-0B11F417417C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Twitter.Tests", "Cake.Twitter.Tests\Cake.Twitter.Tests.csproj", "{8139C5E3-9C90-4C46-B761-C837A09018EE}"
