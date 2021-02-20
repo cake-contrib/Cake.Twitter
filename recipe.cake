@@ -10,7 +10,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Twitter",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunDotNetCorePack: true,
-                            preferredBuildProviderType: BuildProviderType.GitHubActions);
+                            preferredBuildProviderType: BuildProviderType.GitHubActions,
+                            shouldGenerateDocumentation: false);
 
 BuildParameters.PrintParameters(Context);
 
