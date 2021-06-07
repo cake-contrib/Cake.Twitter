@@ -22,8 +22,6 @@
       <Authors>Gary Ewan Park</Authors>
       <Copyright>Copyright © $(FullYear) — Cake Contributions</Copyright>
       <Description>Cake AddIn that extends Cake with ability to send messages to Twitter.</Description>
-      <PackageIcon>icon.png</PackageIcon>
-      <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <PackageProjectUrl>https://github.com/cake-contrib/Cake.Twitter/</PackageProjectUrl>
       <PackageTags>Cake;Script;Build;Twitter;cake-addin</PackageTags>
