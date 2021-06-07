@@ -26,7 +26,7 @@
       <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <PackageProjectUrl>https://github.com/cake-contrib/Cake.Twitter/</PackageProjectUrl>
-      <PackageTags>Cake;Script;Build;Twitter</PackageTags>
+      <PackageTags>Cake;Script;Build;Twitter;cake-addin</PackageTags>
       <RepositoryUrl>https://github.com/cake-contrib/Cake.Twitter.git</RepositoryUrl>
       <PackageReleaseNotes>https://github.com/cake-contrib/Cake.Twitter/releases/tag/$(Version)</PackageReleaseNotes>
   </PropertyGroup>
