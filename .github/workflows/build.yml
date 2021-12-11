@@ -12,7 +12,7 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       matrix:
-        os: [ windows-2019, ubuntu-18.04, macos-10.15 ]
+        os: [ windows-2022, ubuntu-18.04, macos-10.15 ]
 
     env:
       AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
@@ -45,6 +45,19 @@ jobs:
         with:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+
+      - name: Install .NET Core SDK 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: Install .NET Core SDK 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Install .NET Core SDK (global.json)
+        uses: actions/setup-dotnet@v1
 
       - name: Build project
         uses: cake-build/cake-action@v1
