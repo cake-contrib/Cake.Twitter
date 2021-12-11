@@ -46,13 +46,18 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1.9.0
+      - name: Install .NET Core SDK 3.1.x
+        uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: |
-            3.1.413
-            5.0.403
-            6.0.100
+          dotnet-version: '3.1.x'
+
+      - name: Install .NET Core SDK 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Install .NET Core SDK (global.json)
+        uses: actions/setup-dotnet@v1
 
       - name: Build project
         uses: cake-build/cake-action@v1
