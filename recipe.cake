@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=2.2.1
+#load nuget:?package=Cake.Recipe&version=3.0.1
 
 Environment.SetVariableNames();
 
@@ -10,7 +10,6 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Twitter",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunDotNetCorePack: true,
-                            shouldRunDupFinder: false,
                             shouldRunInspectCode:!AppVeyor.IsRunningOnAppVeyor,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
                             shouldGenerateDocumentation: false);
