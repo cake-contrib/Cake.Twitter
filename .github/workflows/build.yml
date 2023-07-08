@@ -37,6 +37,12 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: | 
+            5.0.x
+
       - name: Fetch all tags and branches
         run: git fetch --prune --unshallow
 
