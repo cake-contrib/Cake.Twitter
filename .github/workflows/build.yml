@@ -35,32 +35,32 @@ jobs:
       WYAM_DEPLOY_REMOTE: ${{ github.event.repository.html_url }}
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
 
       - name: Fetch all tags and branches
         run: git fetch --prune --unshallow
 
       - name: Cache Tools
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.1
         with:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
       - name: Install .NET Core SDK 5.0.x
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3.2.0
         with:
           dotnet-version: '5.0.x'
 
       - name: Install .NET Core SDK 6.0.x
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3.2.0
         with:
           dotnet-version: '6.0.x'
 
       - name: Install .NET Core SDK (global.json)
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3.2.0
 
       - name: Build project
-        uses: cake-build/cake-action@v1
+        uses: cake-build/cake-action@v1.4.1
         with:
           script-path: recipe.cake
           target: CI
@@ -69,14 +69,14 @@ jobs:
           cake-bootstrap: true
 
       - name: Upload Issues-Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.2
         with:
           if-no-files-found: warn
           name: issues
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.2
         with:
           if-no-files-found: warn
           name: package
