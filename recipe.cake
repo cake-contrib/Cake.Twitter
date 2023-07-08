@@ -20,4 +20,6 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
+ToolSettings.SetToolPreprocessorDirectives(gitVersionGlobalTool: "#tool dotnet:?package=GitVersion.Tool&version=5.6.6");
+
 Build.RunDotNetCore();
