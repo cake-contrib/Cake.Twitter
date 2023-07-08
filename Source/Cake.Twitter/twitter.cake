@@ -7,7 +7,12 @@ var accessTokenSecret       = EnvironmentVariable("TWITTER_ACCESS_TOKEN_SECRET")
 
 try
 {
-    TwitterSendTweet(oAuthConsumerKey, oAuthConsumerSecret, accessToken, accessTokenSecret, "Testing, 1, 2, 3");
+    TwitterSendTweet(
+        oAuthConsumerKey,
+        oAuthConsumerSecret,
+        accessToken,
+        accessTokenSecret,
+        "Testing, 1, 2, 3");
 }
 catch(Exception ex)
 {
