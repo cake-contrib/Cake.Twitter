@@ -34,11 +34,10 @@ jobs:
       WYAM_DEPLOY_BRANCH: "gh-pages"
       WYAM_DEPLOY_REMOTE: ${{ github.event.repository.html_url }}
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3.5.3
-
-      - name: Fetch all tags and branches
-        run: git fetch --prune --unshallow
+      - name: Get the sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Cache Tools
         uses: actions/cache@v3.3.1
@@ -46,21 +45,20 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
-      - name: Install .NET Core SDK 5.0.x
-        uses: actions/setup-dotnet@v3.2.0
+      - name: Install .NET SDK 6.0.x - 8.0.x
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '5.0.x'
-
-      - name: Install .NET Core SDK 6.0.x
-        uses: actions/setup-dotnet@v3.2.0
-        with:
-          dotnet-version: '6.0.x'
+          dotnet-version: |
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
 
       - name: Install .NET Core SDK (global.json)
-        uses: actions/setup-dotnet@v3.2.0
+        uses: actions/setup-dotnet@v3
 
       - name: Build project
-        uses: cake-build/cake-action@v1.4.1
+        uses: cake-build/cake-action@master
         with:
           script-path: recipe.cake
           target: CI
