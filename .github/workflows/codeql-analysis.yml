@@ -35,7 +35,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install .NET SDK 5.0.x - 9.0.x
-      uses: actions/setup-dotnet@v4.3.1
+      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
       with:
         dotnet-version: |
           5.0.x
@@ -50,11 +50,11 @@ jobs:
       if: ${{ github.event_name == 'pull_request' }}
 
     - name: Install .NET Core SDK (global.json)
-      uses: actions/setup-dotnet@v4.3.1
+      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
 
       # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
+      uses: github/codeql-action/init@45c373516f557556c15d420e3f5e0aa3d64366bc # v3
       with:
         languages: ${{ matrix.language }}
         # If you wish to specify custom queries, you can do so here or in a config file.
@@ -66,4 +66,4 @@ jobs:
       shell: pwsh
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      uses: github/codeql-action/analyze@45c373516f557556c15d420e3f5e0aa3d64366bc # v3

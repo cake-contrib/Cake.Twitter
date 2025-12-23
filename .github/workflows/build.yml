@@ -41,13 +41,13 @@ jobs:
           fetch-depth: 0
 
       - name: Cache Tools
-        uses: actions/cache@v4.3.0
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
       - name: Install .NET SDK 5.0.x - 10.0.x
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
           dotnet-version: |
             5.0.x
@@ -58,10 +58,10 @@ jobs:
             10.0.x
 
       - name: Install .NET Core SDK (global.json)
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
 
       - name: Build project
-        uses: cake-build/cake-action@v3.0.1
+        uses: cake-build/cake-action@d218f1133bb74a1df0b08c89cfd8fc100c09e1a0 # v3.0.1
         with:
           script-path: recipe.cake
           target: CI
@@ -70,14 +70,14 @@ jobs:
           cake-bootstrap: true
 
       - name: Upload Issues-Report
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           if-no-files-found: warn
           name: issues-${{ matrix.os }}
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           if-no-files-found: warn
           name: package-${{ matrix.os }}
