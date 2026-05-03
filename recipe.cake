@@ -1,4 +1,4 @@
-#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0042
+#load nuget:?package=Cake.Recipe&version=4.0.0
 
 Environment.SetVariableNames();
 
@@ -9,7 +9,7 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Twitter",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDotNetPack: true,
+                            shouldRunDotNetCorePack: true,
                             shouldRunInspectCode:!AppVeyor.IsRunningOnAppVeyor,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
                             shouldGenerateDocumentation: false,
@@ -24,4 +24,4 @@ ToolSettings.SetToolSettings(context: Context,
 
 ToolSettings.SetToolPreprocessorDirectives();
 
-Build.RunDotNet();
+Build.RunDotNetCore();
