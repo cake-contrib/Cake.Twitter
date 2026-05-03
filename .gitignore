@@ -258,3 +258,6 @@ tools/**
 
 # Mac
 .DS_Store
+
+# Language service cache files (e.g. Roslyn / IDE language servers)
+*.lscache

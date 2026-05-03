@@ -1,4 +1,4 @@
-﻿#r "bin\Debug\net6.0\Cake.Twitter.dll"
+﻿#r "bin\Debug\net10.0\Cake.Twitter.dll"
 
 var oAuthConsumerKey        = EnvironmentVariable("TWITTER_CONSUMER_KEY");
 var oAuthConsumerSecret     = EnvironmentVariable("TWITTER_CONSUMER_SECRET");
