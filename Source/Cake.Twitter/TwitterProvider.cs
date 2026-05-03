@@ -82,19 +82,20 @@ namespace Cake.Twitter
             var headerValue = GenerateAuthorizationHeaderValue(parameters, signature);
 
             var tweetContent = string.Format("{{\r\n    \"text\": \"{0}\"\r\n}}", tweet.Replace(Environment.NewLine, "\\r\\n"));
-            var httpContent = new StringContent(tweetContent, Encoding.UTF8, "application/json");
-
-            return SendRequest(headerValue, httpContent);
+            return SendRequest(headerValue, tweetContent);
         }
 
-        private async Task<string> SendRequest(string oAuthHeader, HttpContent httpContent)
+        private async Task<string> SendRequest(string oAuthHeader, string tweetContent)
         {
             using (var http = new HttpClient())
+            using (var httpContent = new StringContent(tweetContent, Encoding.UTF8, "application/json"))
             {
                 http.DefaultRequestHeaders.Add("Authorization", oAuthHeader);
-                var httpResp = await http.PostAsync(TwitterApiBaseUrl, httpContent);
-                var respBody = await httpResp.Content.ReadAsStringAsync();
-                return respBody;
+                using (var httpResp = await http.PostAsync(TwitterApiBaseUrl, httpContent))
+                {
+                    var respBody = await httpResp.Content.ReadAsStringAsync();
+                    return respBody;
+                }
             }
         }
 
@@ -112,10 +113,11 @@ namespace Cake.Twitter
                             .EncodeDataString());
 
             var signatureKey = string.Format("{0}&{1}", _consumerKeySecret.EncodeDataString(), _accessTokenSecret.EncodeDataString());
-            var sha1 = new HMACSHA1(Encoding.ASCII.GetBytes(signatureKey));
-
-            var signatureBytes = sha1.ComputeHash(Encoding.ASCII.GetBytes(dataToSign.ToString()));
-            return Convert.ToBase64String(signatureBytes);
+            using (var sha1 = new HMACSHA1(Encoding.ASCII.GetBytes(signatureKey)))
+            {
+                var signatureBytes = sha1.ComputeHash(Encoding.ASCII.GetBytes(dataToSign.ToString()));
+                return Convert.ToBase64String(signatureBytes);
+            }
         }
 
         private string GenerateAuthorizationHeaderValue(IEnumerable<KeyValuePair<string, string>> parameters, string signature)
